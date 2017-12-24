@@ -96,9 +96,9 @@ public class AvaliadorTest {
 
     public function testEntenderLeilaoComApenasUmLance() {
         $criador = new CriadorDeLeilao();
-        Leilao leilao = $criador->
+        Leilao $leilao = $criador->
         para("Playstation 4 Novo")
-        ->lance(joao, 1000)
+        ->lance($joao, 1000)
         ->constroi();
 
         $this->leiloeiro->avalia($leilao);
