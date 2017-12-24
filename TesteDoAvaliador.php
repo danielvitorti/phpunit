@@ -47,4 +47,61 @@ require "Leilao.php";
             var_dump($leiloeiro->getMenorLance() == $menorEsperado);
 
         }
+
+
+        public function testDeveEncontrarOsTresMaioresLances() 
+{
+    $daniel   = new Usuario("Daniel");
+    $vitor  = new Usuario("Vitor");
+
+    $leilao = new Leilao("Playstation 3 Novo");
+
+    $leilao->propoe( new Lance( $daniel , 100.0) );
+    $leilao->propoe( new Lance( $vitor, 200.0) );
+    $leilao->propoe( new Lance( $daniel , 300.0) );
+    $leilao->propoe( new Lance( $vitor, 400.0) );
+
+    $leiloeiro = new Avaliador();
+    $leiloeiro->avalia($leilao);
+
+    $maiores = $leiloeiro->getTresMaiores();
+
+    $this->assertEquals(3, count($maiores));
+    $this->assertEquals(400, $maiores[0]->getValor(), 0.00001 );
+    $this->assertEquals(300, $maiores[1]->getValor(), 0.00001 );
+    $this->assertEquals(200, $maiores[2]->getValor(), 0.00001 );
+}
+
+public void testDeveDevolverTodosLancesCasoNaoHajaMinimo3() 
+{
+    $daniel   = new Usuario("Daniel");
+    $vitor  = new Usuario("Vitor");
+
+    $leilao = new Leilao("Playstation 3 Novo");
+
+    $leilao->propoe( new Lance($daniel , 100.0) );
+    $leilao->propoe( new Lance($vitor, 200.0) );
+
+    $leiloeiro = new Avaliador();
+    $leiloeiro->avalia($leilao);
+
+    $maiores = $leiloeiro->getTresMaiores();
+
+    assertEquals(2, count($maiores));
+    assertEquals(200, $maiores[0]->getValor(), 0.00001 );
+    assertEquals(100, $maiores[1]->getValor(), 0.00001 );
+}
+
+public void testDeveDevolverListaVaziaCasoNaoLances() 
+{
+    $leilao = new Leilao("Playstation 3 Novo");
+
+    $leiloeiro = new Avaliador();
+    $leiloeiro->avalia($leilao);
+
+    $maiores = $leiloeiro->getTresMaiores();
+
+    $this->assertEquals(0, count($maiores));
+}
     }
+
