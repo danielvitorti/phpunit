@@ -1,6 +1,7 @@
 <?php
-class LeilaoTest
-{
+class LeilaoTest extends PHPUnit_Framework_TestCase {
+
+
 public function testNaoAceitarDoisLancesSeguidosDoMesmoUsuario() 
 {
     $leilao = new Leilao("Notebook");

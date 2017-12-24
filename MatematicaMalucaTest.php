@@ -1,6 +1,7 @@
 <?php
-class MatematicaMalucaTest 
-{
+class MatematicaMalucaTest extends PHPUnit_Framework_TestCase {
+
+
     public function testMultiplicaMaiorQue30() 
     {
         $matematica = new MatematicaMaluca();
