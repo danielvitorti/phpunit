@@ -4,6 +4,13 @@
 		private $valor;
 		
 		function __construct(Usuario $usuario,$valor) {
+			
+
+			if($valor <= 0) 
+			{
+            	throw new InvalidArgumentException();
+        	}
+
 			$this->usuario = $usuario;
 			$this->valor = $valor;
 		}
